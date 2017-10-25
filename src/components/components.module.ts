@@ -1,4 +1,3 @@
-y
 import { NgModule } from '@angular/core';
 import { OrderFormComponent } from './order-form/order-form';
 @NgModule({

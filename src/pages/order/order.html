@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Order Portrait</ion-title>
   </ion-navbar>
@@ -16,7 +16,7 @@
 <ion-content padding>
 
   <ion-slides>
-  <ion-slide>
+    <ion-slide>
       <h2>Step 1: Select portrait type</h2>
       <ion-item>
         <ion-label floating>Number of Objects</ion-label>
@@ -28,42 +28,59 @@
         </ion-select>
       </ion-item>
       <ion-item>
-            <ion-label floating>Portait Type</ion-label>
-            <ion-select [(ngModel)]="onlineOrder.portraitType" (ionChange)="calculatePrice()">
-              <ion-option value="charcoal">Black & White (Charcoal)</ion-option>
-              <ion-option value="Pasterl">Colour (Pasterl)</ion-option>
-            </ion-select>
-       </ion-item>
-    <ion-item>
-          <ion-label floating>Portait Size</ion-label>
-          <ion-select [(ngModel)]="onlineOrder.portraitSize" (ionChange)="calculatePrice()">
-            <ion-option value="12x18">12 inch X 18 inch</ion-option>
-            <ion-option value="18x24">18 inch X 24 inch</ion-option>
-          </ion-select>
-     </ion-item>
-    <ion-item>
-             <ion-label floating>Protective Mat</ion-label>
-             <ion-select [(ngModel)]="onlineOrder.matAdd" (ionChange)="calculatePrice()">
-               <ion-option value="none">No Mat</ion-option>
-               <ion-option value="black">Black Mat</ion-option>
-               <ion-option value="white">White Mat</ion-option>
-             </ion-select>
-        </ion-item>
-    <ion-item>
-             <ion-label floating>Total Price</ion-label>
-             <ion-input  type="text" [(ngModel)]="onlineOrder.totalPrice" [readonly]="true"></ion-input>
-    </ion-item>
+        <ion-label floating>Portait Type</ion-label>
+        <ion-select [(ngModel)]="onlineOrder.portraitType" (ionChange)="calculatePrice()">
+          <ion-option value="charcoal">Black & White (Charcoal)</ion-option>
+          <ion-option value="Pasterl">Colour (Pasterl)</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Portait Size</ion-label>
+        <ion-select [(ngModel)]="onlineOrder.portraitSize" (ionChange)="calculatePrice()">
+          <ion-option value="12x18">12 inch X 18 inch</ion-option>
+          <ion-option value="18x24">18 inch X 24 inch</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Protective Mat</ion-label>
+        <ion-select [(ngModel)]="onlineOrder.matAdd" (ionChange)="calculatePrice()">
+          <ion-option value="none">No Mat</ion-option>
+          <ion-option value="black">Black Mat</ion-option>
+          <ion-option value="white">White Mat</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Total Price</ion-label>
+        <ion-input type="text" [(ngModel)]="onlineOrder.totalPrice" [readonly]="true"></ion-input>
+      </ion-item>
     </ion-slide>
 
     <ion-slide>
       <h2>Step 2:Upload photos</h2>
+      <h2>{{onlineOrder.orderId}}</h2>
       <h2>{{onlineOrder.numberOfHeads}}</h2>
       <h2>{{onlineOrder.portraitType}}</h2>
       <h2>{{onlineOrder.portraitSize}}</h2>
+      <h2>{{onlineOrder.totalPrice}}</h2>
+      <ion-item>
+        <input type="file" id="uploadPhoto1" (change) = "uploadPhoto($event)">
+      </ion-item>
+      <ion-item>
+        <input type="file" id="uploadPhoto2" (change) = "uploadPhoto($event)">
+      </ion-item>
+      <ion-item>
+        <input type="file" id="uploadPhoto3" (change) = "uploadPhoto($event)">
+      </ion-item>
     </ion-slide>
 
     <ion-slide>
       <h2>Step 3: Enter delivery information</h2>
+      <h2>{{onlineOrder.orderId}}</h2>
+      <h2>{{onlineOrder.numberOfHeads}}</h2>
+      <h2>{{onlineOrder.portraitType}}</h2>
+      <h2>{{onlineOrder.portraitSize}}</h2>
+      <h2>{{onlineOrder.totalPrice}}</h2>
+      <h2>{{onlineOrder.uploadPhotoUrls}}</h2>
     </ion-slide>
 
     <ion-slide>
@@ -71,5 +88,6 @@
     </ion-slide>
 
   </ion-slides>
-  <button ion-button (click)="prev()" [hidden]="backHidden">{{backBtnLabel}}</button><button ion-button (click)="next()">{{nextBtnLabel}}</button>
+  <button ion-button (click)="prev()" [hidden]="backHidden">{{backBtnLabel}}</button>
+  <button ion-button (click)="next()">{{nextBtnLabel}}</button>
 </ion-content>

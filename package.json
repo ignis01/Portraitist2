@@ -29,6 +29,7 @@
         "cordova-android": "^6.3.0",
         "cordova-browser": "^4.1.0",
         "cordova-plugin-device": "^1.1.6",
+        "cordova-plugin-filechooser": "^1.0.1",
         "cordova-plugin-ionic-webview": "^1.1.15",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "git+https://github.com/apache/cordova-plugin-statusbar.git",
@@ -44,7 +45,7 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "3.0.0",
-        "@types/node": "^8.0.34",
+        "@types/node": "^8.0.46",
         "typescript": "2.3.4"
     },
     "description": "An Ionic project",
@@ -55,7 +56,8 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {}
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-filechooser": {}
         },
         "platforms": [
             "android",

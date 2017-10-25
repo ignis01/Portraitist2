@@ -1,8 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {OnlineOrder} from "../../model/onlineorder";
-
+import * as AWS from 'aws-sdk';
 /**
  * Generated class for the OrderPage page.
  *
@@ -23,17 +22,34 @@ export class OrderPage {
   backBtnLabel:String;
   onlineOrder:OnlineOrder;
   backHidden: boolean;
+  bucketName = 'portraitist-customer-upload';
+  bucketRegion = 'us-east-1';
+  identityPoolId = 'us-east-1:5ce684af-cc60-437d-980b-6039d7bbc851';
+  s3:AWS.S3;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.nextBtnLabel="Next";
     this.backBtnLabel="Back";
     this.backHidden = true;
     this.onlineOrder = new OnlineOrder();
-  }
+
+    let creds = new AWS.CognitoIdentityCredentials({
+         IdentityPoolId:'us-east-1:5ce684af-cc60-437d-980b-6039d7bbc851'
+       });
+
+       AWS.config.update({
+         region:'us-east-1',
+         credentials:creds
+       });
+ }
 
 
   ionViewDidLoad() {
     this.slides.lockSwipes(true);
+
+
     console.log('ionViewDidLoad OrderPage');
+
   }
 
   next(){
@@ -67,4 +83,26 @@ export class OrderPage {
     }
   }
 
+
+  uploadPhoto(event){
+     let fileName = event.target.files.name;
+     let file = event.target.files[0];
+     let albumPhotosKey = encodeURIComponent(this.onlineOrder.orderId.toString())+ '//';
+     let photoKey = albumPhotosKey + fileName;
+     let s3 = new AWS.S3({
+           apiVersion: '2006-03-01',
+           params:{Bucket: 'portraitist-customer-upload'}
+         })
+     s3.upload({
+       Key: photoKey,
+       Body: file,
+       ACL: 'public-read',
+       Bucket:'portraitist-customer-upload'
+      }, function (err, data) {
+       if (err) {
+         return alert('There was an error uploading your photo: ' + err.message);
+       }
+       alert('Successfully uploaded photo.');
+     })
+  }
 }
