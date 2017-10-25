@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import X2JS from 'x2js';
-import {Observable} from "rxjs/Observable";
+
 /**
  * Generated class for the GalleryPage page.
  *

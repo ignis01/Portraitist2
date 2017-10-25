@@ -32,16 +32,19 @@ export class OrderPage {
     this.backBtnLabel="Back";
     this.backHidden = true;
     this.onlineOrder = new OnlineOrder();
-
     let creds = new AWS.CognitoIdentityCredentials({
-         IdentityPoolId:'us-east-1:5ce684af-cc60-437d-980b-6039d7bbc851'
-       });
+                IdentityPoolId:'us-east-1:5ce684af-cc60-437d-980b-6039d7bbc851'
+         });
 
-       AWS.config.update({
-         region:'us-east-1',
-         credentials:creds
-       });
- }
+         AWS.config.update({
+                region:'us-east-1',
+                credentials:creds
+         });
+    this.s3 = new AWS.S3({
+     apiVersion: '2006-03-01',
+     params:{Bucket: 'portraitist-customer-upload'}
+   })
+}
 
 
   ionViewDidLoad() {
@@ -85,15 +88,13 @@ export class OrderPage {
 
 
   uploadPhoto(event){
-     let fileName = event.target.files.name;
+
      let file = event.target.files[0];
-     let albumPhotosKey = encodeURIComponent(this.onlineOrder.orderId.toString())+ '//';
+     let fileName = file.name;
+     let albumPhotosKey = encodeURIComponent(this.onlineOrder.orderId.toString())+ '/';
      let photoKey = albumPhotosKey + fileName;
-     let s3 = new AWS.S3({
-           apiVersion: '2006-03-01',
-           params:{Bucket: 'portraitist-customer-upload'}
-         })
-     s3.upload({
+
+     this.s3.upload({
        Key: photoKey,
        Body: file,
        ACL: 'public-read',
