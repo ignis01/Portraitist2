@@ -8,6 +8,7 @@ import {ArtistsPage} from "../pages/artists/artists";
 import {GalleryPage} from "../pages/gallery/gallery";
 import {OrderPage} from "../pages/order/order";
 import {ContactPage} from "../pages/contact/contact";
+import {LoginPage} from "../pages/login/login";
 
 @Component({
   templateUrl: 'app.html'
@@ -29,6 +30,7 @@ export class MyApp {
       { title: 'Galleries', component: GalleryPage},
       { title: 'Order Portrait', component: OrderPage},
       { title: 'Contact Us', component: ContactPage},
+      { title: 'Login', component: LoginPage},
     ];
 
   }

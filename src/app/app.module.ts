@@ -13,6 +13,8 @@ import {ContactPage} from "../pages/contact/contact";
 
 import {IonicImageViewerModule} from "ionic-img-viewer";
 import {HttpModule} from "@angular/http";
+import {LoginPage} from "../pages/login/login";
+import {GlobalVars} from "../services/globalVars";
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import {HttpModule} from "@angular/http";
     ArtistsPage,
     GalleryPage,
     OrderPage,
-    ContactPage
+    ContactPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -37,11 +40,13 @@ import {HttpModule} from "@angular/http";
     ArtistsPage,
     GalleryPage,
     OrderPage,
-    ContactPage
+    ContactPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    GlobalVars,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

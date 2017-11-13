@@ -26,6 +26,7 @@ export class OnlineOrder{
 
   constructor(){
     this._orderId = UUID.UUID();
+    this._uploadPhotoUrls =  new Array();
   }
 
 

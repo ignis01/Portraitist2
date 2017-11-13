@@ -45,5 +45,21 @@
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
 
+  <!--Firebase js files-->
+
+  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCmcN5fbSd96aNqyaYDXupWzl59Bnx4kkw",
+      authDomain: "portraitist-feabc.firebaseapp.com",
+      databaseURL: "https://portraitist-feabc.firebaseio.com",
+      projectId: "portraitist-feabc",
+      storageBucket: "",
+      messagingSenderId: "875565774267"
+    };
+    firebase.initializeApp(config);
+  </script>
+
 </body>
 </html>

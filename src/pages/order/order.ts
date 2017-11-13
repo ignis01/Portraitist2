@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 import {OnlineOrder} from "../../model/onlineorder";
 import * as AWS from 'aws-sdk';
+import {ListObjectsRequest} from "aws-sdk/clients/s3";
 /**
  * Generated class for the OrderPage page.
  *
@@ -88,22 +89,23 @@ export class OrderPage {
 
 
   uploadPhoto(event){
-
      let file = event.target.files[0];
      let fileName = file.name;
      let albumPhotosKey = encodeURIComponent(this.onlineOrder.orderId.toString())+ '/';
      let photoKey = albumPhotosKey + fileName;
-
+     let uploadUrls = this.onlineOrder.uploadPhotoUrls;
      this.s3.upload({
        Key: photoKey,
        Body: file,
        ACL: 'public-read',
        Bucket:'portraitist-customer-upload'
-      }, function (err, data) {
+      }, (err, data)=>{
        if (err) {
          return alert('There was an error uploading your photo: ' + err.message);
        }
-       alert('Successfully uploaded photo.');
+         uploadUrls.push(data.Location.toString());
      })
   }
+
+
 }
